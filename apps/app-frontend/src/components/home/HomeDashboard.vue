@@ -602,9 +602,9 @@ defineExpose({ openWidgetPicker, setLayout })
                                 <GripVerticalIcon />
                             </button>
                             <span class="home-widget-size-label">{{ widget.size }}</span>
-                            <div class="home-widget-options">
+                            <div class="home-widget-options relative h-6">
                                 <OverflowMenu
-                                    class="relative inline-flex size-6 min-w-6 shrink-0 cursor-pointer items-center justify-center rounded-full border border-solid border-transparent bg-transparent p-0 text-[var(--color-text-default)] transition-[background-color,color,filter,transform] duration-150 hover:bg-surface-4 hover:brightness-[--hover-brightness] active:scale-[0.97] [&>svg]:size-4"
+                                    class="absolute right-2 top-0 inline-flex size-6 min-w-6 shrink-0 cursor-pointer items-center justify-center rounded-full border border-solid border-transparent bg-transparent p-0 text-[var(--color-text-default)] transition-[background-color,color,filter,transform] duration-150 hover:bg-surface-4 hover:brightness-[--hover-brightness] active:scale-[0.97] [&>svg]:size-4"
                                     :options="widgetOptions(widget, index)"
                                     :tooltip="formatMessage(messages.options)"
                                 >
@@ -868,20 +868,23 @@ defineExpose({ openWidgetPicker, setLayout })
 }
 
 .home-widget:hover .home-widget-edit-bar,
-.home-widget:focus-within .home-widget-edit-bar {
+.home-widget:has(:focus-visible, [aria-haspopup='menu'][aria-expanded='true'])
+    .home-widget-edit-bar {
     box-shadow: var(--shadow-card);
     opacity: 1;
 }
 
 .home-widget:hover .home-widget-size-label,
-.home-widget:focus-within .home-widget-size-label {
+.home-widget:has(:focus-visible, [aria-haspopup='menu'][aria-expanded='true'])
+    .home-widget-size-label {
     width: 2.25rem;
     margin-left: 0.25rem;
     opacity: 1;
 }
 
 .home-widget:hover .home-widget-options,
-.home-widget:focus-within .home-widget-options {
+.home-widget:has(:focus-visible, [aria-haspopup='menu'][aria-expanded='true'])
+    .home-widget-options {
     width: 2rem;
     opacity: 1;
     pointer-events: auto;
